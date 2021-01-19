@@ -1,0 +1,500 @@
+* {
+    /*Nessa configuração remove a configuração de margem e espaçamento padrão*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;/* Elementos será configurados pela borda interna*/
+}
+
+body {
+    background-image: url(../IMG/vintage-wallpaper.png);
+    background-size: auto 100vh; /*Primeiro valor é altura e o segundo é a largura / Unidade de medida: vh(viewport hight) - valor absoluto da altura da tela Ex: 100vh - vw(viewport widht) pode distorcer/achata uma fotografia. / auto siginifica que vai manter a proporção */
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100vh;/*Para que o body fique sempre na altura da tela*/
+    /*background-color: #24345b;*/
+    
+}
+
+.menu{
+    background-color: whitesmoke;
+    position: fixed; /*Para deixar o menu fixo na tela, independente da rolagem, porém esse valor deixa o menu no tamanho do conteûdo | Display flex não consegue alterar o menu por conta da position fixed*/
+    width: 100vw;/*Para deixar no tamanho da tela o menu*/
+    top: 0;/*Só funciona com o position declarada*/
+    z-index: 1;/*Priorizando o menu <33*/
+
+}
+
+.menu li {
+    list-style: none;/*Tira os pontinhos padrão de lista*/
+}
+
+.menu ul {
+    display: flex;/*Disposição flex significa que vai ficar em linha*/
+    justify-content: space-around;/*Justificar um conteudo - between so aplica espaço no meio e deixa as tags das pontas ficam nas pontas - around coloca espaço na em todos / Só funciona com combinação com o display flex*/
+}
+
+.menu a {
+ 
+  display: block; /*Para transformar em bloco o elemento inline*/
+  padding: 10px 20px;/* Fazer área de clique no menu | Elemento inline não funciona direito o padding*/
+  transition: background-color 2s,color 2s;/*transição da cor do hover ->background whitesmoke para o  background-color: #24345b  e o color do link para #24345b para whitesmoke(branco) */
+}
+
+.menu a:active,
+.menu a:hover{
+    background-color: #24345b;
+    color:whitesmoke;
+} 
+
+a {
+    /* a tag "a" é muito genérica*/
+    text-decoration: none;/* Tira o underline dos links*/
+    color: #24345b;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+a:hover{
+    text-decoration: underline;/*Quando passar o mouse(hover) vai aparecer o underline(PSEUDOCLASSE)*/
+}
+
+.titulo {
+    transform: scale(0.2) translateY(50vh);
+    opacity: 0;
+    animation: 1s linear 2s animacaoTitulo forwards;/*Vai para frente e para no último estado na animação | delay de 2s, caso não tivesse o 1s não teria o delay*/
+}
+
+@keyframes animacaoTitulo{
+    0%{
+        /*0% não precisava colocar pois, já é contado o 0% das propriedades acima*/
+        transform: scale(0.2) translateY(50vh);
+        opacity:0;
+      
+    }
+
+    100%{
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    } 
+}
+
+.site-subtitle,.site-title {
+    color: whitesmoke;
+    text-align: center;
+}
+
+.site-subtitle {
+    font-family: 'Indie Flower', cursive;
+}
+
+.site-title{
+    font-size: 5em;
+    font-family: 'Indie Flower', cursive;
+}
+
+.img-portfolio img {
+    height: 180px;
+    width:  100%;
+}
+
+.flip-card {
+    
+    perspective: 900px;/* Para deixar "mais" 3d*/
+}
+
+.card{
+    position:relative;
+    transform-style: preserve-3d;/* Defini como os elementos agem em 3d*/
+    transition: transform 1s;/* Transição menos bruta para flipar o card*/
+}
+
+.flip-card:hover .card{
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back{
+    backface-visibility: hidden;/*Parte de trás sempre ficará escondida*/
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+.card-back{
+    height: 180px;
+    width:100%;
+    transform:rotateY(180deg);
+
+}
+
+/*.img-portfolio {
+    object-fit: cover;   /*Para deixar na mesma a proporção mas sem deformar*/
+    /*object-position: center /* Para mover a posição dentro da imagem
+
+
+}*/
+
+header {
+    height: 100vh; /* deixar o header do tamanho da tela*/
+    display: flex;
+    align-items: center;/* Centraliza verticalmente*/
+    justify-content: center;/* Centraliza horizontalmente*/
+}
+
+.sobre p{
+    text-indent:2em;/*recuo de paragráfo*/
+    margin-bottom: 1.2em;
+    text-align: justify;
+}
+
+.sobre a{
+    color: white;
+    text-decoration: underline;
+}
+
+.sobre a:hover{
+    background-color: violet;
+    text-decoration:none;
+}
+
+.sobre .avatar img{
+    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);/*Formatos(clip-path corta o elemento) - https://bennettfeely.com/clippy/ */
+
+}
+
+.sobre h2,
+.contato h2,
+.portfolio h2 {
+    font-family: 'Odibee Sans', cursive;
+    color: whitesmoke;
+    margin-bottom:2em; /*Margem para baixo*/
+    font-size:50px;
+}
+
+.sobre,
+.contato,
+.portfolio  {
+    font-family: 'Odibee Sans', cursive; 
+    color: whitesmoke;
+    padding: 2em;
+    font-size: 18px;
+    min-height: 100vh;/*Tem que ter no mínimo essa altura(100vh),senão pode deixar passar*/
+    margin-left: auto;
+    margin-right: auto;
+   
+}
+
+.portfolio figcaption {
+    margin-bottom: 0.5em;
+}
+
+.portfolio .grid {
+    display: grid;/* Ele mantém a configuração para que depois decidir quantas colunas será escolhida*/
+    gap: 2em;/*É uma padding só que no grid*/
+  
+} 
+
+.portfolio figure{
+    text-align: center;
+    
+}
+
+.img-portfolio{
+    height: 180px;
+    width:250px;
+    
+    /*Imagens dar um tempo para o zoom out*/
+    
+    transition: transform 500ms;
+
+}
+
+.img-portfolio:hover{
+    transform: scale(1.2); /*rotate(-2deg); - rotaciona a imagem | escala de qualquer elemento é 1*/
+}
+
+.contato{
+    text-align:center;
+}
+
+/* se a tela tiver pelo menos 400px vai carregar estes estilos*/
+@media (min-width: 400px) {
+    body {
+        font-size:16px;
+      
+    }
+
+    .site-title {
+        font-size: 40px;
+    }
+
+    .site-subtitle {
+        font-size: 20px;
+       
+    }
+
+    .sobre .avatar{
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .sobre h2,
+    .contato h2,
+    .portfolio h2 {
+        font-size: 31px;
+       
+    }
+
+    .sobre,
+    .contato,
+    .portfolio  {
+
+    min-height: 400px;
+    }
+
+    .portfolio .grid {
+       
+        gap: 0.2em;/*É uma padding só que no grid*/
+        grid-template-columns: 300px  ; /*COLUNA 1 : 240 / 2 COLUNA : 240px*/
+        justify-content: center;
+    
+    } 
+
+    a {
+    font-size: 16px;
+    }
+
+    .sobre .avatar img{
+        clip-path: polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%);
+        width: 270px;
+    } 
+
+      .img-portfolio {
+        width:  300px ;
+        height: 180px;
+    }   
+
+    .contato {
+        
+        font-size: 13px;
+        
+    }
+}
+
+@media (min-width: 500px) {
+
+    h3{
+        margin: 20px;
+        text-align: center;
+    }
+    .portfolio .grid {
+       
+        gap: 0.9em;/*É uma padding só que no grid*/
+        grid-template-columns: 450px ; /*COLUNA 1 : 240 / 2 COLUNA : 240px*/
+        justify-content: center;
+    
+    } 
+
+    .img-portfolio {
+        width:  400px ;
+        height: 180px;
+    }
+
+    .contato {
+        font-size: 14px;
+        
+    }
+
+}
+
+@media (min-width: 600px) {
+    body {
+        font-size: 18px;
+    }
+
+    .img-portfolio {
+        width:  180px;
+        height: 180px;
+    }
+
+
+    .sobre .avatar{
+        float:right;
+        margin-left:2em;
+    }
+
+    .portfolio .grid {
+        gap: 0.1em;      
+        grid-template-columns: 290px 290px ; 
+        justify-content: center;
+    
+    } 
+
+    .img-portfolio {
+        width:  250px ;
+        height: 180px;
+    }
+}
+
+@media (min-width: 800px) {
+    body {
+        font-size: 18px;
+    }
+
+    .menu a {
+        font-size: 20px;
+    }
+
+    .site-title {
+        font-size: 60px;
+    }
+
+    .site-subtitle {
+        font-size: 30px;
+    }
+
+    .sobre h2,
+    .contato h2,
+    .portfolio h2 {
+        font-size: 30px;
+        margin-bottom:0.5em; 
+    }
+
+    .portfolio .grid {
+        display: grid;
+        grid-template-columns: 385px 385px ; 
+        justify-content: center;
+    
+    } 
+
+    .img-portfolio {
+        width:  350px ;
+        height: 190px;
+    }
+
+}
+
+@media (min-width: 938px) {
+    .portfolio .grid {
+        gap: 1em;
+        grid-template-columns: 270px 270px 270px ; 
+        justify-content: center;
+        align-content: center;
+        height: calc(100vh - 8em - 41px );/*tamanho da tela(100vh) - tamanho dos paddings do section - altura do h2 - margin do h2*/
+     
+    
+    } 
+
+    .img-portfolio {
+        width: 260px ;
+        height: 190px;
+    }
+}
+
+@media (min-width: 1050px) {
+    
+    .portfolio .grid {
+        grid-template-columns: 270px 270px 270px ; 
+        justify-content: center;
+        align-content: center;
+        height: calc(100vh - 8em - 41px );/*tamanho da tela(100vh) - tamanho dos paddings do section - altura do h2 - margin do h2*/
+        margin-top: 7em;
+        gap:3em;
+    } 
+
+    .img-portfolio {
+        width:  310px ;
+        height: 190px;
+    }
+
+    .sobre,
+    .contato,
+    .portfolio  {
+      padding:1.2em;
+      
+    }
+
+    .sobre h2,
+    .contato h2,
+    .portfolio h2 {
+    margin-bottom:0.1em;
+    
+    }
+
+    .portfolio h2{
+        margin-bottom:2em;
+    }
+
+    .contato h2{
+        margin-top:4em;
+    }
+
+    a {
+        font-size: 18px;
+        }
+
+    .container{
+        /*Serve para centralizar horizotalmente os elementos na tela*/
+        max-width: 1050px;/*Largura máxima seja de 1050px*/
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media(min-width:1200px){
+    .container  {
+    max-width: 1200px;
+    /*Centraliza a tela*/
+    margin-left:auto;
+    margin-right:auto;
+    }  
+
+    .contato {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 1300px) {
+    .portfolio .grid {
+        gap:4em;
+        margin-top: 5em;
+    } 
+
+    .portfolio h2{
+        margin-bottom:2em;
+    }
+  
+    .container{
+      
+        max-width: 1300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .contato {
+        font-size: 15px;
+    }
+       
+}
+
+
+/*REDIMENSIONADO OS ICONES*/
+.contato a {
+    color:whitesmoke;
+    font-size: 5em;
+    transition: text-shadow 1s;/* Para demorar um segundo para transionar a propriedade text shadorw fazendo um efeito de luz*/
+
+}
+
+/*active momento do touch para celular*/
+.contato a:active,
+.contato a:hover{
+    text-decoration: none;
+    text-shadow:  0px 0px 10px rgba(255,255,255,.5);
+    /*I - DESLOCADO PARA BAIXO 
+    II - DESCOLADO PARA O LADO
+    III - ESFUMAÇADO*/
+}
+
+.contato .icons {
+    text-align: center;
+}
